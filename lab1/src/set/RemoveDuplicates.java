@@ -2,6 +2,8 @@ package set;
 
 public class RemoveDuplicates {
 
+	//Testing for Github
+	//Does it work?? 
 	public static void main(String[] args) {
 		int[] xs = {7,5,3,5,2,2,7};
 		int[] ys = uniqueElements(xs);
