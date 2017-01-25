@@ -23,8 +23,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return the number of elements in this queue
 	 */
 	public int size() {	
-		//Insert size
-		
+		//changes has been made
 		return 0;
 	}
 
@@ -36,7 +35,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * 			to this queue, else false
 	 */
 	public boolean offer(E x) {
-		//Returns true if it was possible
+		
 		return true;
 	}
 
