@@ -21,7 +21,8 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * Returns the number of elements in this queue
 	 * @return the number of elements in this queue
 	 */
-	public int size() {		
+	public int size() {	
+		//Insert size
 		return 0;
 	}
 
