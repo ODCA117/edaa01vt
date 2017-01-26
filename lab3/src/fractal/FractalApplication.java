@@ -155,7 +155,7 @@ public class FractalApplication extends Application {
 					}
 				});
 				} catch (ThreadDeath e) { // do nothing
-//					System.out.println("ber√§kningen avbruten");
+//					System.out.println("ber‰kningen avbruten");
 				} catch(Throwable e){
 //					System.err.println(e.getMessage());
 					e.printStackTrace(System.err);
