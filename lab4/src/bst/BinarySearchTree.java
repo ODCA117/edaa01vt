@@ -2,7 +2,6 @@ package bst;
 
 public class BinarySearchTree<E extends Comparable<? super E>> {
 	
-	//attributes
 	BinaryNode<E> root;
     int size;
     
