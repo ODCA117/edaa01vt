@@ -3,7 +3,8 @@ package set;
 public class RemoveDuplicates {
 
 	//Testing for Github
-	//Hello
+	
+	//Does it work
 	
 	public static void main(String[] args) {
 		int[] xs = {7,5,3,5,2,2,7};
