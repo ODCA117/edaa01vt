@@ -21,25 +21,24 @@ public class RadixSort {
 		// sort ...	
 		
 		for (int i = 1; i <= maxNbrOfDigits; i++){
-			int countWhile = 0;
 			
 			while (!numbers.isEmpty()){
 				int element = numbers.poll();
-				int j = (int)(element/Math.pow(10, i-1)) % 10;
+				int p = i - 1;
+				
+				
+				int j = (int) (element / Math.pow(10.0, p)) % 10;
 				
 				queues[j].offer(element);
-				
-				System.out.println(countWhile);
-				countWhile++;
+								
 			}
 			
 			for(int j = 0; j < 10; j++){
 				numbers.append(queues[j]);
 			}
-			System.out.println(i);
 		}
 		
-		System.out.println(numbers.size());
+		//System.out.println(numbers.size());
 		
 		for (int i = 0; i < a.length; i++){
 			a[i] = numbers.poll();
@@ -47,10 +46,21 @@ public class RadixSort {
 		
 	}
 	
-//	public static void main(String args[]){
-//		
-//		int[] a = { 1 };
-//		RadixSort.radixSort(a, 1);
-//		
-//	}
+	public static void main(String args[]){
+		
+		int[] a = { 10, 2, 5, 7, 4, 9, 8, 6, 1, 3 };
+			
+		RadixSort.radixSort(a, 2);
+		for(int i: a){
+			System.out.println(i);
+		}
+		
+		
+		
+//		for(int i: a){
+//			System.out.println(i);
+//		}
+		
+		
+	}
 }
