@@ -141,14 +141,35 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		if(this == q)
 			throw new IllegalArgumentException();
 		
-		Iterator<E> itr = q.iterator();
-		
-		while(itr.hasNext()){
-			E x = itr.next();
+		if (this.last == null && q.last == null){
 			
-			this.offer(x);
-			q.poll();
 		}
+		else if(this.last == null){	//this tom
+			this.last = q.last;
+			this.last.next = q.last.next;
+		}
+		
+		else if(q.last == null){	//q tom
+			
+		}
+		
+		else {			//Ingen tom
+			
+			QueueNode<E> temp = q.last.next;
+			q.last.next = this.last.next;
+			this.last.next = temp;
+			this.last = q.last;
+			}
+		
+		
+//		Iterator<E> itr = q.iterator();
+//		
+//		while(itr.hasNext()){
+//			E x = itr.next();
+//			
+//			this.offer(x);
+//			q.poll();
+//		}
 		
 	}
 
