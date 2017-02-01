@@ -24,10 +24,8 @@ public class RadixSort {
 			
 			while (!numbers.isEmpty()){
 				int element = numbers.poll();
-				int p = i - 1;
 				
-				
-				int j = (int) (element / Math.pow(10.0, p)) % 10;
+				int j = (int) (element / Math.pow(10.0, i - 1)) % 10;
 				
 				queues[j].offer(element);
 								
@@ -43,24 +41,5 @@ public class RadixSort {
 		for (int i = 0; i < a.length; i++){
 			a[i] = numbers.poll();
 		}
-		
-	}
-	
-	public static void main(String args[]){
-		
-		int[] a = { 10, 2, 5, 7, 4, 9, 8, 6, 1, 3 };
-			
-		RadixSort.radixSort(a, 2);
-		for(int i: a){
-			System.out.println(i);
-		}
-		
-		
-		
-//		for(int i: a){
-//			System.out.println(i);
-//		}
-		
-		
 	}
 }
