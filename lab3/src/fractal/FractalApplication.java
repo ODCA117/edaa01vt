@@ -1,7 +1,6 @@
 package fractal;
 
-//Testing from lth
-
+import mountain.*;
 import javafx.concurrent.Task;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -46,8 +45,9 @@ public class FractalApplication extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		fractals = new Fractal[1];
-		fractals[0] = new Koch(300);	
+		fractals = new Fractal[2];
+		fractals[0] = new Koch(300);
+		fractals[1] = new Mountain(new Point(50, 450), new Point(250, 50), new Point(500, 400));
 		actFractal = fractals[0];
 		BorderPane root = new BorderPane();
 		root.setBottom(addButtonBox());
