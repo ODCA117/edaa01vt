@@ -5,7 +5,7 @@ public class Side {
 	private Point p1;
 	private Point p2;
 
-	public Side(Point p1, Point p2, Point mitt) {
+	public Side(Point p1, Point p2, Point mitt){
 		// TODO Auto-generated constructor stub
 		this.mitt = mitt;
 		this.p1 = p1;

@@ -1,6 +1,7 @@
 package mountain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import fractal.*;
 
@@ -41,7 +42,6 @@ public class RealMountain extends Fractal {
 		}
 		else {
 			
-			
 			Point ab = new Point(
 					(Math.abs(a.getX() + b.getX())) /2 , (Math.abs(a.getY() + b.getY())) /2);
 			Point bc = new Point(
@@ -49,11 +49,34 @@ public class RealMountain extends Fractal {
 			Point ac = new Point( 
 					(Math.abs(a.getX() + c.getX())) /2 , (Math.abs(a.getY() + c.getY())) /2);
 			
+			Iterator<Side> itr = sides.iterator();
 			
+			while (itr.hasNext()){
+				Side s = itr.next();
+				
+				if(!s.getMitt().equals(ab) && !s.getP1().equals(a) && !s.getP2().equals(b)){
+					ab.move(ab.getX(), ab.getY() + dev);
+					sides.add(new Side(a, b, ab));
+				}else {
+					sides.remove(s);
+				}
+				
+				if(!s.getMitt().equals(bc) && !s.getP1().equals(b) && !s.getP2().equals(c)){
+					bc.move(bc.getX(), bc.getY() + dev);
+					sides.add(new Side(b, c, bc));
+				}else {
+					sides.remove(s);
+				}
+				
+				if(!s.getMitt().equals(ac) && !s.getP1().equals(a) && !s.getP2().equals(c)){
+					ac.move(ac.getX(), ac.getY() + dev);
+					sides.add(new Side(a, c, ac));
+				}else {
+					sides.remove(s);
+				}
+			}
+				
 			
-			sides.add(new Side(a, b, ab));
-			sides.add(new Side(b, c, bc));
-			sides.add(new Side(a, c, ac));
 			
 			fractalLine(turtle, order-1, dev/2, a, ab, ac);
 			fractalLine(turtle, order-1, dev/2, ab, b, bc);
