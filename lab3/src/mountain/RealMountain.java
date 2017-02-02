@@ -1,14 +1,14 @@
 package mountain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.ListIterator;
 
 import fractal.*;
 
 public class RealMountain extends Fractal {
-	Point[] dots;
-	double dev;
-	ArrayList<Side> sides;
+	private Point[] dots;
+	private double dev;
+	private ArrayList<Side> sides;
 	
 	public RealMountain(double dev, Point a, Point b, Point c){
 		super();
@@ -19,6 +19,7 @@ public class RealMountain extends Fractal {
 		dots[1] = b;
 		dots[2] = c;
 		
+		sides = new ArrayList<Side>();
 	}
 	
 	@Override
@@ -43,40 +44,41 @@ public class RealMountain extends Fractal {
 		else {
 			
 			Point ab = new Point(
-					(Math.abs(a.getX() + b.getX())) /2 , (Math.abs(a.getY() + b.getY())) /2);
+					(Math.abs(a.getX() + b.getX())) /2 , (Math.abs(a.getY() + b.getY())) /2 + RandomUtilities.randFunc(dev));
 			Point bc = new Point(
-					(Math.abs(b.getX() + c.getX())) /2 , (Math.abs(b.getY() + c.getY())) /2);
+					(Math.abs(b.getX() + c.getX())) /2 , (Math.abs(b.getY() + c.getY())) /2 + RandomUtilities.randFunc(dev));
 			Point ac = new Point( 
-					(Math.abs(a.getX() + c.getX())) /2 , (Math.abs(a.getY() + c.getY())) /2);
+					(Math.abs(a.getX() + c.getX())) /2 , (Math.abs(a.getY() + c.getY())) /2 + RandomUtilities.randFunc(dev));
 			
-			Iterator<Side> itr = sides.iterator();
 			
-			while (itr.hasNext()){
-				Side s = itr.next();
+			if(sides.size() == 0){
+				sides.add(new Side(a, b , ab) );
+			}
+			
+			else{
 				
-				if(!s.getMitt().equals(ab) && !s.getP1().equals(a) && !s.getP2().equals(b)){
-					ab.move(ab.getX(), ab.getY() + dev);
-					sides.add(new Side(a, b, ab));
-				}else {
-					sides.remove(s);
-				}
+				ListIterator<Side> itr = sides.listIterator();
 				
-				if(!s.getMitt().equals(bc) && !s.getP1().equals(b) && !s.getP2().equals(c)){
-					bc.move(bc.getX(), bc.getY() + dev);
-					sides.add(new Side(b, c, bc));
-				}else {
-					sides.remove(s);
-				}
-				
-				if(!s.getMitt().equals(ac) && !s.getP1().equals(a) && !s.getP2().equals(c)){
-					ac.move(ac.getX(), ac.getY() + dev);
-					sides.add(new Side(a, c, ac));
-				}else {
-					sides.remove(s);
+				while(itr.hasNext()){
+					Side s = itr.next();
+					
+					if(s.getP1().equals(a) && s.getP2().equals(b)){
+						itr.remove();
+						ab = s.getMitt();
+					}
+					else if(s.getP1().equals(b) && s.getP2().equals(c)){
+						itr.remove();
+						bc = s.getMitt();
+					}
+					else if(s.getP1().equals(a) && s.getP2().equals(c)){
+						itr.remove();
+						ac = s.getMitt();
+					}
+					else{
+						itr.add(s);
+					}
 				}
 			}
-				
-			
 			
 			fractalLine(turtle, order-1, dev/2, a, ab, ac);
 			fractalLine(turtle, order-1, dev/2, ab, b, bc);
