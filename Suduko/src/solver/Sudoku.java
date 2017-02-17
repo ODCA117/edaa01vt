@@ -30,6 +30,15 @@ public class Sudoku {
 		matris[row][col] = number;
 	}
 	
+	public void setTable(int[][] table){
+		for(int i = 0; i < table.length; i++){
+			for(int j = 0; j < table[i].length; j++){
+				matris[i][j] = table[i][j];
+			}
+		}
+	}
+	
+	
 	/** 
 	 * Ritar sudokut s� som det ser ut just nu.
 	 */
