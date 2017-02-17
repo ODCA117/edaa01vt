@@ -133,7 +133,7 @@ public class Graphics extends Application {
 			
 			
 			
-//			Create a new Sudoku
+			//Create a new Sudoku
 			Sudoku sud =  new Sudoku();
 			sud.setTable(numbers);
 			
