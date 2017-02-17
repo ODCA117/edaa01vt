@@ -53,10 +53,6 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 			return key.toString() + " = " + value.toString();
 		}
 		
-//		@Override
-//		public boolean equals(K key){
-//			return this.key == key;
-//		}
 
 	}
 
@@ -93,10 +89,10 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		//skapa ny entry
 		Entry<K,V> newEntry = new Entry(key,value);
 		//hashcoda nyckeln
-		int index = newEntry.key.hashCode() % (entry.length-1);
+		int index = newEntry.key.hashCode() % (entry.length);
 		
 		if(index < 0)
-			index = entry.length - 1 + index;
+			index = entry.length + index;
 		
 		//placera in nyckeln		
 		if(entry[index] == null){
@@ -123,9 +119,9 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 			return oldValue;
 		}
 		
-//		//fylnadsgrad är överstigen 
-//		if( (double)size / ((double)entry.length - 1.0)  > loadFactor)
-//			rehash();
+		//fylnadsgrad är överstigen 
+		if( (double)size / ((double)entry.length)  > loadFactor)
+			rehash();
 		
 		return null;
 	}
@@ -182,6 +178,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 				sb.append(e.toString() + ", ");
 				e = e.next;
 			}
+			sb.append("\n");
 		}
 		
 		return sb.toString();
@@ -220,12 +217,29 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		for(int i = 0; i < entry.length; i++){
 			Entry<K,V> e = entry[i];
 			
+			
 			while(e != null){
-				int newHash = e.key.hashCode() % (newEntry.length - 1);
+				int newHash = e.key.hashCode()% newEntry.length;
 				
-				newEntry[newHash] = e;
-				e = e.next;
+				if(newHash < 0)
+					newHash = newEntry.length + newHash;
 				
+				if(newEntry[newHash] == null){
+					newEntry[newHash] = e;
+					e = e.next;
+					newEntry[newHash].next = null;
+				}
+				else{
+					Entry<K,V> temp = newEntry[newHash];
+					
+					while(temp.next != null){
+						temp = temp.next;
+					}
+					temp.next = e;
+					e = e.next;
+					temp.next.next = null;
+					
+				}
 			}
 		}
 		
