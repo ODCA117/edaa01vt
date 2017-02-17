@@ -93,9 +93,6 @@ public class Graphics extends Application {
 		root.setPadding(new Insets(10, 50, 10, 50));
 		root.setSpacing(10);
 		root.setAlignment(Pos.CENTER);
-//		for(int r = 0; r < row.length; r++){
-//			root.getChildren().add(row[r]);
-//		}
 		root.getChildren().addAll(row);
 		root.getChildren().add(buttons);
 		
@@ -129,10 +126,6 @@ public class Graphics extends Application {
 				}
 			}
 			
-			
-			
-			
-			
 			//Create a new Sudoku
 			Sudoku sud =  new Sudoku();
 			sud.setTable(numbers);
@@ -151,21 +144,8 @@ public class Graphics extends Application {
 				alert.show();
 			}
 				
-			
-//			Get values from Text Fields and add them to Sudoku object
-//			sud.Solve
-//			If (solution == true){
-//				Print the solution
-//			}
-//			else{
-//				Messagebox("No solution found")
-//			}
-				
 		}
 	}
-	
-	
-	
 }
 
 
