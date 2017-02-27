@@ -1,5 +1,6 @@
 package phonebook;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -7,7 +8,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 
-public class MapPhoneBook implements PhoneBook {
+public class MapPhoneBook implements PhoneBook, Serializable{
 	private Map<String, Set<String>> pb;
 	
 
